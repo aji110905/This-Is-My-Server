@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "tims",
+	"version": "${version}",
+	"name": "This Is My Server",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"sources": "https://github.com/aji110905/"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/tims/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"server": [
+			"aji.tims.ThisIsMyServer::onInitializeServer"
+		]
+	},
+	"mixins": [
+		"tims.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.3",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

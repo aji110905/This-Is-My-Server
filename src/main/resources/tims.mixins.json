@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "aji.tims.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AccessorMinecraftServer",
+    "MinecraftServerMixin",
+    "PlayerManagerMixin",
+    "ReloadCommandMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+	}
+}
