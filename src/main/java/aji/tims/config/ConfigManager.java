@@ -41,7 +41,7 @@ public class ConfigManager {
             } catch (IOException e) {
                 ThisIsMyServer.LOGGER.error("Failed to create config file", e);
             }
-            save();
+            init();
         }
         load();
         ThisIsMyServer.LOGGER.info("Config inited");
@@ -65,7 +65,7 @@ public class ConfigManager {
             } catch (IOException ex) {
                 ThisIsMyServer.LOGGER.error("Failed to create config file", ex);
             }
-            save();
+            init();
             load();
             return;
         }
@@ -77,25 +77,24 @@ public class ConfigManager {
         load();
     }
 
-    public void save(){
+    public void init(){
         try {
             JsonWriter writer = new JsonWriter(new FileWriter(file));
             writer.setIndent("  ");
             writer.beginObject();
             configs.forEach((name, config) -> {
                 try {
-                    writer.name(name);
-                    JsonUtil.writeJson(writer, config.toJson());
+                    writer.name(name).nullValue();
                 } catch (IOException e) {
-                    ThisIsMyServer.LOGGER.error("Failed to save config file", e);
+                    ThisIsMyServer.LOGGER.error("Failed to init config file", e);
                 }
             });
             writer.endObject();
             writer.flush();
         } catch (IOException e) {
-            ThisIsMyServer.LOGGER.error("Failed to save config file", e);
+            ThisIsMyServer.LOGGER.error("Failed to init config file", e);
         }
-        ThisIsMyServer.LOGGER.info("Config saved");
+        ThisIsMyServer.LOGGER.info("Config initd");
     }
 
     public Config getConfig(String name){

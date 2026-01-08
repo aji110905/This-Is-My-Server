@@ -43,15 +43,6 @@ public class NoticeEntity {
         }
     }
 
-    public JsonObject toJson(){
-        if (!isSend) return null;
-        JsonObject object = new JsonObject();
-        for (int i = 0; i < lines.size(); i++) {
-            object.addProperty(String.valueOf(i), lines.get(i).getString());
-        }
-        return object;
-    }
-
     public void send(ServerPlayerEntity player){
         if (!isSend) return;
         for (NoticeLine line : lines) {

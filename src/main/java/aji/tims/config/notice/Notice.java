@@ -67,18 +67,6 @@ public class Notice {
         }
     }
 
-    public JsonObject toJson(){
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("alsoNotifyEntrant", alsoNotifyEntrant);
-        jsonObject.addProperty("priority", priority);
-        jsonObject.addProperty("weight", weight);
-        JsonObject info = new JsonObject();
-        info.add("entrant", entrant.toJson());
-        info.add("others", others.toJson());
-        jsonObject.add("info", info);
-        return jsonObject;
-    }
-
     public void send(ServerPlayerEntity player){
         if (priority.equals("others")){
             sendOthers(player);

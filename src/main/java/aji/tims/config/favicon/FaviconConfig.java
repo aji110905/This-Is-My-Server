@@ -15,7 +15,6 @@ import java.util.Random;
 public class FaviconConfig implements Config {
     public static final String NAME = "favicon";
 
-    private boolean enabled = false;
     private final List<Favicon> favicons = new ArrayList<>();
 
     @Override
@@ -24,19 +23,8 @@ public class FaviconConfig implements Config {
     }
 
     @Override
-    public JsonElement toJson() {
-        if (!enabled) return JsonNull.INSTANCE;
-        JsonArray array = new JsonArray();
-        for (Favicon favicon : favicons) {
-            array.add(favicon.toJson());
-        }
-        return array;
-    }
-
-    @Override
     public void read(JsonElement element){
         if (!element.isJsonArray()) {
-            enabled = false;
             return;
         }
         for (JsonElement faviconElement : element.getAsJsonArray()) {
@@ -44,17 +32,15 @@ public class FaviconConfig implements Config {
                 favicons.add(new Favicon(faviconElement.getAsJsonObject()));
             }
         }
-        enabled = true;
     }
 
     @Override
     public void clean() {
-        enabled = false;
         favicons.clear();
     }
 
     public ServerMetadata.Favicon randomFavicon(){
-        if (favicons.isEmpty() || !enabled) return ((AccessorMinecraftServer) ThisIsMyServer.server).getFavicon();
+        if (favicons.isEmpty()) return ((AccessorMinecraftServer) ThisIsMyServer.server).getFavicon();
         int totalWeight = favicons.stream().mapToInt(Favicon::getWeight).sum();
         int random = new Random().nextInt(totalWeight);
         int currentWeight = 0;

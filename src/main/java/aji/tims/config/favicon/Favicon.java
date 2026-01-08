@@ -53,15 +53,6 @@ public class Favicon {
         }
     }
 
-    public JsonObject toJson(){
-        JsonObject object = new JsonObject();
-        object.addProperty("weight", weight);
-        if (path != null) {
-            object.addProperty("path", path);
-        }
-        return object;
-    }
-
     public int getWeight(){
         return weight;
     }

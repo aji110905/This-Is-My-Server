@@ -41,15 +41,6 @@ public class Motd {
         }
     }
 
-    public JsonObject toJson(){
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("weight", weight);
-        JsonObject info = new JsonObject();
-        info.addProperty("0", line0.getString());
-        info.addProperty("1", line1.getString());
-        return jsonObject;
-    }
-
     public int getWeight(){
         return weight;
     }

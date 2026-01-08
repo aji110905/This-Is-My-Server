@@ -5,8 +5,6 @@ import com.google.gson.JsonElement;
 public interface Config {
     String name();
 
-    JsonElement toJson();
-
     void read(JsonElement element);
 
     void clean();
