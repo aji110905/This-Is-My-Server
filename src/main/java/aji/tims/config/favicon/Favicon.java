@@ -14,7 +14,6 @@ import java.nio.file.Path;
 
 public class Favicon {
     private final int weight;
-    private final String path;
     private boolean isValid = false;
     private byte[] favicon;
 
@@ -32,11 +31,9 @@ public class Favicon {
         }
         JsonElement pathElement = object.get("path");
         if (pathElement == null || pathElement.isJsonNull()) {
-            path = null;
             favicon = null;
         } else {
-            path = pathElement.getAsString();
-            File file = Path.of(path).toFile();
+            File file = Path.of(pathElement.getAsString()).toFile();
             try {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 isValid = bufferedImage.getWidth() == 64 && bufferedImage.getHeight() == 64;

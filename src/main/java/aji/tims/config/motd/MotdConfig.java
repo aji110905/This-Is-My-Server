@@ -2,9 +2,7 @@ package aji.tims.config.motd;
 
 import aji.tims.ThisIsMyServer;
 import aji.tims.config.Config;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonNull;
 
 import java.util.ArrayList;
 import java.util.List;

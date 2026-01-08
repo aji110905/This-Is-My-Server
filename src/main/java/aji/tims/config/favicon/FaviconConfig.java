@@ -3,9 +3,7 @@ package aji.tims.config.favicon;
 import aji.tims.ThisIsMyServer;
 import aji.tims.config.Config;
 import aji.tims.mixin.AccessorMinecraftServer;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonNull;
 import net.minecraft.server.ServerMetadata;
 
 import java.util.ArrayList;
