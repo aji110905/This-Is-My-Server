@@ -32,13 +32,8 @@ public class NoticeConfig implements Config {
 
     @Override
     public void read(JsonElement element) throws ConfigFileFormatWrongException {
-        if (element.isJsonNull()) {
-            enabled = false;
-            return;
-        }
         if (!element.isJsonArray()) {
             enabled = false;
-            throw new ConfigFileFormatWrongException(this, "Mast Array`");
         }
         for (JsonElement noticeElement : element.getAsJsonArray()) {
             if (noticeElement.isJsonObject()) {
