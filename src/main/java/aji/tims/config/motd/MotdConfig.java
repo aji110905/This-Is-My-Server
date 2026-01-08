@@ -2,7 +2,6 @@ package aji.tims.config.motd;
 
 import aji.tims.ThisIsMyServer;
 import aji.tims.config.Config;
-import aji.tims.config.ConfigFileFormatWrongException;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
@@ -33,7 +32,7 @@ public class MotdConfig implements Config {
     }
 
     @Override
-    public void read(JsonElement element) throws ConfigFileFormatWrongException {
+    public void read(JsonElement element){
         if (!element.isJsonArray()) {
             enabled = false;
             return;

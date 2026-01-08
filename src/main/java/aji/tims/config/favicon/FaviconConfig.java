@@ -2,8 +2,6 @@ package aji.tims.config.favicon;
 
 import aji.tims.ThisIsMyServer;
 import aji.tims.config.Config;
-import aji.tims.config.ConfigFileFormatWrongException;
-import aji.tims.config.motd.Motd;
 import aji.tims.mixin.AccessorMinecraftServer;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -36,7 +34,7 @@ public class FaviconConfig implements Config {
     }
 
     @Override
-    public void read(JsonElement element) throws ConfigFileFormatWrongException {
+    public void read(JsonElement element){
         if (!element.isJsonArray()) {
             enabled = false;
             return;

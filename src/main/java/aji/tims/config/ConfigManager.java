@@ -53,17 +53,11 @@ public class ConfigManager {
             if (element.isJsonObject()) {
                 JsonObject object = element.getAsJsonObject();
                 configs.forEach((name, config) -> {
-                    try {
-                        JsonElement configElement = object.get(name);
-                        if (configElement != null) {
-                            config.read(configElement);
-                        }
-                    } catch (ConfigFileFormatWrongException e) {
-                        ThisIsMyServer.LOGGER.error("The config file format is wrong{}", e.getMessage(), e);
+                    JsonElement configElement = object.get(name);
+                    if (configElement != null) {
+                        config.read(configElement);
                     }
                 });
-            }else {
-                ThisIsMyServer.LOGGER.error("The config file format is wrong", new ConfigFileFormatWrongException("Must Object"));
             }
         } catch (FileNotFoundException e) {
             try {

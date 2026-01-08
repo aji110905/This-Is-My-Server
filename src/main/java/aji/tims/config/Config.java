@@ -7,7 +7,7 @@ public interface Config {
 
     JsonElement toJson();
 
-    void read(JsonElement element) throws ConfigFileFormatWrongException;
+    void read(JsonElement element);
 
     void clean();
 }
