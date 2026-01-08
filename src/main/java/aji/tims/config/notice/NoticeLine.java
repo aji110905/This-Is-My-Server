@@ -11,7 +11,7 @@ public class NoticeLine {
     private final LinkedList<MutableString> elements;
     private final String string;
 
-    public NoticeLine(String string) throws IllegalArgumentException{
+    public NoticeLine(String string){
         this.string = string;
         this.elements = MutableStringUtil.parseStringToLinked(string, MutableStringType.NOTICE);
     }

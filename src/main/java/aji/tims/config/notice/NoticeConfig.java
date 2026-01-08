@@ -41,11 +41,8 @@ public class NoticeConfig implements Config {
             throw new ConfigFileFormatWrongException(this, "Mast Array`");
         }
         for (JsonElement noticeElement : element.getAsJsonArray()) {
-            try {
+            if (noticeElement.isJsonObject()) {
                 notices.add(new Notice(noticeElement.getAsJsonObject()));
-            } catch (IllegalArgumentException | IllegalStateException | NullPointerException e) {
-                enabled = false;
-                throw new ConfigFileFormatWrongException(this, e.getMessage());
             }
         }
         enabled = true;

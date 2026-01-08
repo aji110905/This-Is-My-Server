@@ -13,7 +13,7 @@ public class NoticeEntity {
     private final boolean isSend;
     private final LinkedList<NoticeLine> lines;
 
-    public NoticeEntity(JsonObject jsonObject) throws IllegalArgumentException{
+    public NoticeEntity(JsonObject jsonObject){
         if (jsonObject == null){
             isSend = false;
             lines = null;
