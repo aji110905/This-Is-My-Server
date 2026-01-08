@@ -16,7 +16,7 @@ public class FaviconConfig implements Config {
     public static final String NAME = "favicon";
 
     private boolean enabled = false;
-    private List<Favicon> favicons = new ArrayList<>();
+    private final List<Favicon> favicons = new ArrayList<>();
 
     @Override
     public String name() {
