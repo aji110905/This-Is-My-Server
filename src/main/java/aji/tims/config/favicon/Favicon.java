@@ -20,7 +20,7 @@ public class Favicon {
 
     public Favicon(JsonObject object){
         JsonElement weightElement = object.get("weight");
-        if (weightElement == null) {
+        if (weightElement == null || !weightElement.isJsonPrimitive() || !weightElement.getAsJsonPrimitive().isNumber() || !(weightElement.getAsJsonPrimitive().getAsNumber() instanceof Integer)) {
             weight = 5;
         } else {
             int v = weightElement.getAsInt();
