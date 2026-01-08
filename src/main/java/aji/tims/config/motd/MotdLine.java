@@ -8,15 +8,21 @@ import java.util.LinkedList;
 
 public class MotdLine {
     private final String string;
-    private final LinkedList<MutableString> elements;
+    private LinkedList<MutableString> elements;
+    private boolean isParsed;
 
     public MotdLine(String string){
         this.string = string;
-        this.elements = MutableStringUtil.parseStringToLinked(string, MutableStringType.MOTD);
+        try {
+            this.elements = MutableStringUtil.parseStringToLinked(string, MutableStringType.MOTD);
+            isParsed = true;
+        } catch (Exception e) {
+            isParsed = false;
+        }
     }
 
     public String parse(){
-        return MutableStringUtil.parseLinkedToString(elements, null);
+        return isParsed ? MutableStringUtil.parseLinkedToString(elements, null) : "";
     }
 
     public String getString(){

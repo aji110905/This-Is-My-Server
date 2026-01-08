@@ -34,20 +34,13 @@ public class MotdConfig implements Config {
 
     @Override
     public void read(JsonElement element) throws ConfigFileFormatWrongException {
-        if (element.isJsonNull()) {
+        if (!element.isJsonArray()) {
             enabled = false;
             return;
         }
-        if (!element.isJsonArray()) {
-            enabled = false;
-            throw new ConfigFileFormatWrongException(this, "Mast Array`");
-        }
         for (JsonElement motdElement : element.getAsJsonArray()) {
-            try {
+            if (motdElement.isJsonObject()) {
                 motds.add(new Motd(motdElement.getAsJsonObject()));
-            } catch (IllegalArgumentException | IllegalStateException | NullPointerException e) {
-                enabled = false;
-                throw new ConfigFileFormatWrongException(this, e.getMessage());
             }
         }
         enabled = true;
