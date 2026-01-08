@@ -8,16 +8,22 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import java.util.LinkedList;
 
 public class NoticeLine {
-    private final LinkedList<MutableString> elements;
+    private LinkedList<MutableString> elements;
     private final String string;
+    private boolean isParsed;
 
     public NoticeLine(String string){
         this.string = string;
-        this.elements = MutableStringUtil.parseStringToLinked(string, MutableStringType.NOTICE);
+        try {
+            this.elements = MutableStringUtil.parseStringToLinked(string, MutableStringType.NOTICE);
+            isParsed = true;
+        } catch (Exception e) {
+            isParsed = false;
+        }
     }
 
     public String parse(ServerPlayerEntity player){
-        return MutableStringUtil.parseLinkedToString(elements, player);
+        return isParsed ? MutableStringUtil.parseLinkedToString(elements, player) : "";
     }
 
     public String getString() {
