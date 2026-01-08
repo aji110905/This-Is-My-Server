@@ -37,20 +37,13 @@ public class FaviconConfig implements Config {
 
     @Override
     public void read(JsonElement element) throws ConfigFileFormatWrongException {
-        if (element.isJsonNull()) {
+        if (!element.isJsonArray()) {
             enabled = false;
             return;
         }
-        if (!element.isJsonArray()) {
-            enabled = false;
-            throw new ConfigFileFormatWrongException(this, "Mast Array`");
-        }
         for (JsonElement faviconElement : element.getAsJsonArray()) {
-            try {
+            if (faviconElement.isJsonObject()) {
                 favicons.add(new Favicon(faviconElement.getAsJsonObject()));
-            } catch (IllegalArgumentException | IllegalStateException | NullPointerException e) {
-                enabled = false;
-                throw new ConfigFileFormatWrongException(this, e.getMessage());
             }
         }
         enabled = true;

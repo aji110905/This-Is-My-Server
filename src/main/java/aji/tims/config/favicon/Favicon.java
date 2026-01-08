@@ -18,16 +18,24 @@ public class Favicon {
     private boolean isValid = false;
     private byte[] favicon;
 
-    public Favicon(JsonObject object) throws IllegalArgumentException{
-        int v = object.get("weight").getAsInt();
-        if (v >= 1 && v <= 10) weight = v;
-        else weight = 5;
-        JsonElement element = object.get("path");
-        if (element == null || element.isJsonNull()) {
+    public Favicon(JsonObject object){
+        JsonElement weightElement = object.get("weight");
+        if (weightElement == null) {
+            weight = 5;
+        } else {
+            int v = weightElement.getAsInt();
+            if (v >= 1 && v <= 10) {
+                weight = v;
+            } else {
+                weight = 5;
+            }
+        }
+        JsonElement pathElement = object.get("path");
+        if (pathElement == null || pathElement.isJsonNull()) {
             path = null;
             favicon = null;
         } else {
-            path = element.getAsString();
+            path = pathElement.getAsString();
             File file = Path.of(path).toFile();
             try {
                 BufferedImage bufferedImage = ImageIO.read(file);
